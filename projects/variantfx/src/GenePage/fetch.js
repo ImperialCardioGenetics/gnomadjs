@@ -128,6 +128,8 @@ const fetchVariantData = (geneName, url = VARIANT_FX_API_URL) => {
     OMG_HCM_UNK_AN
     OMG_DCM_UNK_AC
     OMG_DCM_UNK_AN
+    GNO_ALL_UNK_AC
+    GNO_ALL_UNK_AF
   }
 }`
 

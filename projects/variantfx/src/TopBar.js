@@ -94,12 +94,14 @@ const TopBar = ({
       <Search>
         {/* <SearchIconContainer>
         </SearchIconContainer> */}
-        <form onSubmit={(event) => {
-          event.preventDefault()
-          setCurrentGene(event.target.elements[0].value)
-        }}
-        >
+        <form>
           <SearchInput
+            onChange={(event) => {
+              if (uniqueGeneDiseaseNames.contains(event.target.value)) {
+                event.target.blur();
+                setCurrentGene(event.target.value);
+              }
+            }}
             type="text"
             name="search"
             placeholder="Search by gene, transcript, region, or variant"

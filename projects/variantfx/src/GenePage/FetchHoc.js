@@ -12,6 +12,8 @@ import { currentDisease, currentGeneDiseaseData } from '../redux'
 
 import fetch from 'graphql-fetch'
 
+const VARIANT_FX_API_URL = process.env.VARIANT_FX_API_URL
+
 const GenePageContainer = ComposedComponent => class GenePage extends Component {
   static propTypes = {
     currentGene: PropTypes.string.isRequired,
@@ -67,7 +69,7 @@ const mapDispatchToProps = geneFetchFunction => (dispatch) => {
     resetSearchVariants: () => dispatch(
       variantActions.searchVariantsRaw('')
     ),
-    fetchGeneDiseases: () => fetch('http://localhost:4000/graphql')(`
+    fetchGeneDiseases: () => fetch(VARIANT_FX_API_URL)(`
       {
         genediseases {
           Disease

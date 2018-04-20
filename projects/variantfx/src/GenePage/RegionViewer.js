@@ -81,7 +81,6 @@ class GeneRegion extends PureComponent {
     const { transcript } = geneJS//
     const variantsReversed = visibleVariants.reverse()
 
-    console.log('variantsReversed', variantsReversed.toJS())
     if (variantsReversed.isEmpty()) {
       return <Loading />
     }

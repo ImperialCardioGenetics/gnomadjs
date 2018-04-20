@@ -26,6 +26,7 @@ import {
 import GeneInfo from './GeneInfo'
 import GeneSettings from './GeneSettings'
 import RegionViewer from './RegionViewer'
+import VariantPage from './Variant'
 import tableConfig from './tableConfig'
 import fetchFunction from './fetch'
 
@@ -81,7 +82,7 @@ const Page = ({
                   tableConfig={tableConfig}
                   height={600}
                 />
-                {/* <VariantPage /> */}
+                <VariantPage />
               </div>
             )
           }}

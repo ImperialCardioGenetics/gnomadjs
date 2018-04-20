@@ -56,12 +56,15 @@ const VariantAttribute = styled.div`
   margin-bottom: 2px;
 `
 
+const TableRowTotal = TableRow.extend`
+  border-top: 1px solid #000;
+`
+
 const Variant = ({ variant, currentDisease }) => {
-  if (!variant) {
-    return <div />
-  }
-  const processedVariant = processCardioVariant(variant)
-  console.log(processedVariant.diseases[currentDisease])
+  const cohorts = Object.keys(COHORTS).reduce((a, e) => ({[e]: {populations: POPULATIONS}, ...a}), {})
+  const processedVariant = variant ? processCardioVariant(variant) : {diseases: {[currentDisease]: {cohorts}, HVO: {cohorts}}}
+  const VARIANT_TABLE_COHORT_WIDTH = '120px'
+  const VARIANT_TABLE_COLUMN_WIDTH = '60px'
   return (
     <VariantContainer>
       <VariantTitle>{processedVariant.variant_id}</VariantTitle>
@@ -88,12 +91,12 @@ const Variant = ({ variant, currentDisease }) => {
               {' '}
             </VerticalLabelText>
           </TableVerticalLabel>
-          <TableVerticalLabel height={155}>
+          <TableVerticalLabel height={125}>
             <VerticalLabelText>
               HCM cases
             </VerticalLabelText>
           </TableVerticalLabel>
-          <TableVerticalLabel height={35}>
+          <TableVerticalLabel height={85}>
             <VerticalLabelText>
               Controls
             </VerticalLabelText>
@@ -101,14 +104,14 @@ const Variant = ({ variant, currentDisease }) => {
         </VerticalTextLabels>
         <TableRows>
           <TableHeader>
-            <TableTitleColumn>Cohort</TableTitleColumn>
+            <TableTitleColumn width={VARIANT_TABLE_COHORT_WIDTH}>Cohort</TableTitleColumn>
             {Object.keys(POPULATIONS).map(pop => (
-              <TableCell>{POPULATIONS[pop]}</TableCell>
+              <TableCell width={VARIANT_TABLE_COLUMN_WIDTH}>{POPULATIONS[pop]}</TableCell>
             ))}
           </TableHeader>
           {Object.keys(COHORTS).map(cohort => (
             <TableRow>
-              <TableTitleColumn><strong>{COHORTS[cohort]}</strong></TableTitleColumn>
+              <TableTitleColumn width={VARIANT_TABLE_COHORT_WIDTH}><strong>{COHORTS[cohort]}</strong></TableTitleColumn>
               {Object.keys(POPULATIONS).map((pop) => {
                 const popCounts = processedVariant
                   .diseases[currentDisease]
@@ -117,22 +120,22 @@ const Variant = ({ variant, currentDisease }) => {
                 if (Object.keys(popCounts).length !== 0) {
                   if (popCounts.pop_freq !== undefined) {
                     return (
-                      <TableCell>
+                      <TableCell width={VARIANT_TABLE_COLUMN_WIDTH}>
                         {`${popCounts.pop_ac} (${popCounts.pop_freq.toPrecision(3)})`}
                       </TableCell>
                     )
                   }
                 }
                 return (
-                  <TableCell>
+                  <TableCell width={VARIANT_TABLE_COLUMN_WIDTH}>
                     ...
                   </TableCell>
                 )
               })}
             </TableRow>
           ))}
-          <TableRow>
-            <TableTitleColumn><strong>HVO (Healthy)</strong></TableTitleColumn>
+          <TableRowTotal>
+            <TableTitleColumn width={VARIANT_TABLE_COHORT_WIDTH}><strong>HVO (Healthy)</strong></TableTitleColumn>
             {Object.keys(POPULATIONS).map((pop) => {
               const popCounts = processedVariant
                 .diseases.HVO
@@ -141,19 +144,19 @@ const Variant = ({ variant, currentDisease }) => {
               if (Object.keys(popCounts).length !== 0) {
                 if (popCounts.pop_freq !== undefined) {
                   return (
-                    <TableCell>
+                    <TableCell width={VARIANT_TABLE_COLUMN_WIDTH}>
                       {`${popCounts.pop_ac} (${popCounts.pop_freq.toPrecision(3)})`}
                     </TableCell>
                   )
                 }
               }
               return (
-                <TableCell>
+                <TableCell width={VARIANT_TABLE_COLUMN_WIDTH}>
                   ...
                 </TableCell>
               )
             })}
-          </TableRow>
+          </TableRowTotal>
           {/* <TableRow>
             <TableTitleColumn><strong>Gnomad</strong></TableTitleColumn>
             {Object.keys(POPULATIONS).map((pop) => {
@@ -183,7 +186,7 @@ const Variant = ({ variant, currentDisease }) => {
   )
 }
 Variant.propTypes = {
-  variant: PropTypes.object.isRequired,
+  variant: PropTypes.object,
   currentDisease: PropTypes.string.isRequired,
 }
 

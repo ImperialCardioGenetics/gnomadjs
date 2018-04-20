@@ -520,8 +520,8 @@ export const variantCount = createSelector(
 )
 
 export const singleVariantData = createSelector(
-  [focusedVariant, allVariantsInCurrentDataset],
-  (focusedVariant, variants) => variants.get(focusedVariant)
+  [hoveredVariant, allVariantsInCurrentDataset],
+  (hoveredVariant, variants) => variants.get(hoveredVariant)
 )
 
 /**

@@ -57,7 +57,7 @@ export const TableCell = styled.div`
 `
 
 export const TableTitleColumn = TableCell.extend`
-  width: 10px;
+  width: ${props => props.width};
 `
 
 export const ExampleTable = () => (

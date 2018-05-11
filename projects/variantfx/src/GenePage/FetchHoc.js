@@ -79,6 +79,8 @@ const mapDispatchToProps = geneFetchFunction => (dispatch) => {
           VariantClasses
           Missense
           GNO_Ind
+          LMM_DIS_Ind
+          OMG_DIS_Ind
           RBH_DIS_Ind
           RBH_HVO_Ind
           EGY_DIS_Ind

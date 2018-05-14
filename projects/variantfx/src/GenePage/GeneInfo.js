@@ -201,7 +201,7 @@ const GeneInfo = ({
                 <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>Protein-altering</TableCell>
 
               </TableHeader>
-              {Object.keys(COHORTS).map(cohort => (
+              {['RBH', 'EGY', 'SGP', 'LMM', 'OMG'].map(cohort => (
                 <TableRow>
                   <TableCell width={COHORT_TABLE_COHORT_WIDTH}>{COHORTS[cohort]}</TableCell>
                   <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>{currentGeneDiseaseData.get(`${cohort}_DIS_Ind`)}</TableCell>
@@ -221,7 +221,7 @@ const GeneInfo = ({
                   </TableCell>
                 ))}
               </TableRowTotal>
-              {Object.keys(COHORTS).slice(0, 3).map(cohort => (
+              {['RBH', 'EGY', 'SGP'].map(cohort => (
                 <TableRow>
                   <TableCell width={COHORT_TABLE_COHORT_WIDTH}>{COHORTS[cohort]}</TableCell>
                   <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>{currentGeneDiseaseData.get(`${cohort}_HVO_Ind`)}</TableCell>

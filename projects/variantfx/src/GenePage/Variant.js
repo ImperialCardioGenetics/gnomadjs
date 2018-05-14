@@ -109,8 +109,8 @@ const Variant = ({ variant, currentDisease }) => {
               <TableCell width={VARIANT_TABLE_COLUMN_WIDTH}>{POPULATIONS[pop]}</TableCell>
             ))}
           </TableHeader>
-          {Object.keys(COHORTS).map(cohort => (
-            <TableRow>
+          {['RBH', 'EGY', 'SGP', 'LMM', 'OMG'].map(cohort => (
+            <TableRow style={{borderBottomColor: cohort === 'OMG' ? 'black': 'lightgrey'}}>
               <TableTitleColumn width={VARIANT_TABLE_COHORT_WIDTH}><strong>{COHORTS[cohort]}</strong></TableTitleColumn>
               {Object.keys(POPULATIONS).map((pop) => {
                 const popCounts = processedVariant
@@ -134,52 +134,31 @@ const Variant = ({ variant, currentDisease }) => {
               })}
             </TableRow>
           ))}
-          <TableRowTotal>
-            <TableTitleColumn width={VARIANT_TABLE_COHORT_WIDTH}><strong>HVO (Healthy)</strong></TableTitleColumn>
-            {Object.keys(POPULATIONS).map((pop) => {
-              const popCounts = processedVariant
-                .diseases.HVO
-                .cohorts.RBH
-                .populations[pop]
-              if (Object.keys(popCounts).length !== 0) {
-                if (popCounts.pop_freq !== undefined) {
-                  return (
-                    <TableCell width={VARIANT_TABLE_COLUMN_WIDTH}>
-                      {`${popCounts.pop_ac} (${popCounts.pop_freq.toPrecision(3)})`}
-                    </TableCell>
-                  )
+          {['RBH', 'EGY', 'SGP', 'GNO'].map(cohort => (//TODO
+            <TableRow>
+              <TableTitleColumn width={VARIANT_TABLE_COHORT_WIDTH}><strong>{COHORTS[cohort]}</strong></TableTitleColumn>
+              {Object.keys(POPULATIONS).map((pop) => {
+                const popCounts = processedVariant
+                  .diseases['HVO']
+                  .cohorts[cohort]
+                  .populations[pop]
+                if (Object.keys(popCounts).length !== 0) {
+                  if (popCounts.pop_freq !== undefined) {
+                    return (
+                      <TableCell width={VARIANT_TABLE_COLUMN_WIDTH}>
+                        {`${popCounts.pop_ac} (${popCounts.pop_freq.toPrecision(3)})`}
+                      </TableCell>
+                    )
+                  }
                 }
-              }
-              return (
-                <TableCell width={VARIANT_TABLE_COLUMN_WIDTH}>
-                  ...
-                </TableCell>
-              )
-            })}
-          </TableRowTotal>
-          {/* <TableRow>
-            <TableTitleColumn><strong>Gnomad</strong></TableTitleColumn>
-            {Object.keys(POPULATIONS).map((pop) => {
-              const popCounts = processedVariant
-                .diseases['HVO']
-                .cohorts['RBH']
-                .populations[pop]
-              if (Object.keys(popCounts).length !== 0) {
-                if (popCounts.pop_freq !== undefined) {
-                  return (
-                    <TableCell>
-                      {`${popCounts.pop_ac} (${popCounts.pop_freq.toPrecision(3)})`}
-                    </TableCell>
-                  )
-                }
-              }
-              return (
-                <TableCell>
-                  ...
-                </TableCell>
-              )
-            })}
-          </TableRow> */}
+                return (
+                  <TableCell width={VARIANT_TABLE_COLUMN_WIDTH}>
+                    …
+                  </TableCell>
+                )
+              })}
+            </TableRow>
+          ))}
         </TableRows>
       </Table>
     </VariantContainer>

@@ -91,6 +91,9 @@ const GeneInfo = ({
   const COHORT_TABLE_COHORT_WIDTH = '130px'
   const COHORT_TABLE_COLUMN_WIDTH = '60px'
 
+  const CASE_COHORTS = ['RBH', 'EGY', 'SGP', 'LMM', 'OMG']
+  const CONTROL_COHORTS = ['RBH', 'EGY', 'SGP']
+
   return (
     <GeneInfoWrapper>
       <GeneNameWrapper>
@@ -201,7 +204,7 @@ const GeneInfo = ({
                 <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>Protein-altering</TableCell>
 
               </TableHeader>
-              {['RBH', 'EGY', 'SGP', 'LMM', 'OMG'].map(cohort => (
+              {CASE_COHORTS.map(cohort => (
                 <TableRow>
                   <TableCell width={COHORT_TABLE_COHORT_WIDTH}>{COHORTS[cohort]}</TableCell>
                   <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>{currentGeneDiseaseData.get(`${cohort}_DIS_Ind`)}</TableCell>
@@ -217,11 +220,11 @@ const GeneInfo = ({
                 <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>{currentGeneDiseaseData.get('Case_Ind')}</TableCell>
                 {['PTV', 'MIS', 'ONT', 'PAL'].map(csq => (
                   <TableCell key={`${csq}-case`} width={COHORT_TABLE_COLUMN_WIDTH}>
-                    {currentGeneDiseaseData.get(`${csq}_a`)}
+                    {CASE_COHORTS.reduce((sum, cohort) => sum + currentGeneDiseaseData.get(`${cohort}_${csq}_FF_AC`), 0)}
                   </TableCell>
                 ))}
               </TableRowTotal>
-              {['RBH', 'EGY', 'SGP'].map(cohort => (
+              {CONTROL_COHORTS.map(cohort => (
                 <TableRow>
                   <TableCell width={COHORT_TABLE_COHORT_WIDTH}>{COHORTS[cohort]}</TableCell>
                   <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>{currentGeneDiseaseData.get(`${cohort}_HVO_Ind`)}</TableCell>
@@ -246,7 +249,7 @@ const GeneInfo = ({
                 <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>{currentGeneDiseaseData.get('Control_Ind')}</TableCell>
                 {['PTV', 'MIS', 'ONT', 'PAL'].map(csq => (
                   <TableCell key={`${csq}-control`} width={COHORT_TABLE_COLUMN_WIDTH}>
-                    {currentGeneDiseaseData.get(`${csq}_c`)}
+                    {CONTROL_COHORTS.reduce((sum, cohort) => sum + currentGeneDiseaseData.get(`${cohort}_HVO_${csq}_FF_AC`), 0) + currentGeneDiseaseData.get(`GNO_${csq}_FF_AC`)}
                   </TableCell>
                 ))}
               </TableRowTotal>

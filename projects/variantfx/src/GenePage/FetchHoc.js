@@ -91,47 +91,38 @@ const mapDispatchToProps = geneFetchFunction => (dispatch) => {
           Control_Ind
           RBH_HVO_PTV_FF_AC
           RBH_HVO_MIS_FF_AC
-          RBH_HVO_ONT_FF_AC
           RBH_HVO_PAL_FF_AC
           RBH_HVO_SYN_FF_AC
           EGY_HVO_PTV_FF_AC
           EGY_HVO_MIS_FF_AC
-          EGY_HVO_ONT_FF_AC
           EGY_HVO_PAL_FF_AC
           EGY_HVO_SYN_FF_AC
           SGP_HVO_PTV_FF_AC
           SGP_HVO_MIS_FF_AC
-          SGP_HVO_ONT_FF_AC
           SGP_HVO_PAL_FF_AC
           SGP_HVO_SYN_FF_AC
           RBH_PTV_FF_AC
           RBH_MIS_FF_AC
-          RBH_ONT_FF_AC
           RBH_PAL_FF_AC
           RBH_SYN_FF_AC
           EGY_PTV_FF_AC
           EGY_MIS_FF_AC
-          EGY_ONT_FF_AC
           EGY_PAL_FF_AC
           EGY_SYN_FF_AC
           SGP_PTV_FF_AC
           SGP_MIS_FF_AC
-          SGP_ONT_FF_AC
           SGP_PAL_FF_AC
           SGP_SYN_FF_AC
           LMM_PTV_FF_AC
           LMM_MIS_FF_AC
-          LMM_ONT_FF_AC
           LMM_PAL_FF_AC
           LMM_SYN_FF_AC
           OMG_PTV_FF_AC
           OMG_MIS_FF_AC
-          OMG_ONT_FF_AC
           OMG_PAL_FF_AC
           OMG_SYN_FF_AC
           GNO_PTV_FF_AC
           GNO_MIS_FF_AC
-          GNO_ONT_FF_AC
           GNO_PAL_FF_AC
           GNO_SYN_FF_AC
           PTV_a
@@ -154,16 +145,6 @@ const mapDispatchToProps = geneFetchFunction => (dispatch) => {
           MIS_EF_ub
           MIS_CE
           MIS_PT
-          ONT_a
-          ONT_c
-          ONT_OR
-          ONT_OR_lb
-          ONT_OR_ub
-          ONT_EF
-          ONT_EF_lb
-          ONT_EF_ub
-          ONT_CE
-          ONT_PT
           PAL_a
           PAL_c
           PAL_OR

@@ -200,7 +200,6 @@ const GeneInfo = ({
                 <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>n</TableCell>
                 <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>Protein-truncating</TableCell>
                 <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>Missense</TableCell>
-                <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>Other</TableCell>
                 <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>Protein-altering</TableCell>
 
               </TableHeader>
@@ -208,7 +207,7 @@ const GeneInfo = ({
                 <TableRow>
                   <TableCell width={COHORT_TABLE_COHORT_WIDTH}>{COHORTS[cohort]}</TableCell>
                   <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>{currentGeneDiseaseData.get(`${cohort}_DIS_Ind`)}</TableCell>
-                  {['PTV', 'MIS', 'ONT', 'PAL'].map(csq => (
+                  {['PTV', 'MIS', 'PAL'].map(csq => (
                     <TableCell key={`${csq}-${cohort}`} width={COHORT_TABLE_COLUMN_WIDTH}>
                       {currentGeneDiseaseData.get(`${cohort}_${csq}_FF_AC`)}
                     </TableCell>
@@ -218,7 +217,7 @@ const GeneInfo = ({
               <TableRowTotal>
                 <TableCell width={COHORT_TABLE_COHORT_WIDTH}>Total cases</TableCell>
                 <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>{currentGeneDiseaseData.get('Case_Ind')}</TableCell>
-                {['PTV', 'MIS', 'ONT', 'PAL'].map(csq => (
+                {['PTV', 'MIS', 'PAL'].map(csq => (
                   <TableCell key={`${csq}-case`} width={COHORT_TABLE_COLUMN_WIDTH}>
                     {CASE_COHORTS.reduce((sum, cohort) => sum + currentGeneDiseaseData.get(`${cohort}_${csq}_FF_AC`), 0)}
                   </TableCell>
@@ -228,7 +227,7 @@ const GeneInfo = ({
                 <TableRow>
                   <TableCell width={COHORT_TABLE_COHORT_WIDTH}>{COHORTS[cohort]}</TableCell>
                   <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>{currentGeneDiseaseData.get(`${cohort}_HVO_Ind`)}</TableCell>
-                  {['PTV', 'MIS', 'ONT', 'PAL'].map(csq => (
+                  {['PTV', 'MIS', 'PAL'].map(csq => (
                     <TableCell key={`${csq}-${cohort}`} width={COHORT_TABLE_COLUMN_WIDTH}>
                       {currentGeneDiseaseData.get(`${cohort}_HVO_${csq}_FF_AC`)}
                     </TableCell>
@@ -238,7 +237,7 @@ const GeneInfo = ({
               <TableRow>
                 <TableCell width={COHORT_TABLE_COHORT_WIDTH}>gnomAD</TableCell>
                 <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>{currentGeneDiseaseData.get('GNO_Ind')}</TableCell>
-                {['PTV', 'MIS', 'ONT', 'PAL'].map(csq => (
+                {['PTV', 'MIS', 'PAL'].map(csq => (
                   <TableCell key={`${csq}-gnomad`} width={COHORT_TABLE_COLUMN_WIDTH}>
                     {currentGeneDiseaseData.get(`GNO_${csq}_FF_AC`)}
                   </TableCell>
@@ -247,7 +246,7 @@ const GeneInfo = ({
               <TableRowTotal>
                 <TableCell width={COHORT_TABLE_COHORT_WIDTH}>Total controls</TableCell>
                 <TableCell width={COHORT_TABLE_COLUMN_WIDTH}>{currentGeneDiseaseData.get('Control_Ind')}</TableCell>
-                {['PTV', 'MIS', 'ONT', 'PAL'].map(csq => (
+                {['PTV', 'MIS', 'PAL'].map(csq => (
                   <TableCell key={`${csq}-control`} width={COHORT_TABLE_COLUMN_WIDTH}>
                     {CONTROL_COHORTS.reduce((sum, cohort) => sum + currentGeneDiseaseData.get(`${cohort}_HVO_${csq}_FF_AC`), 0) + currentGeneDiseaseData.get(`GNO_${csq}_FF_AC`)}
                   </TableCell>

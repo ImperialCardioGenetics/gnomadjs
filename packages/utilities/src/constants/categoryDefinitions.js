@@ -76,14 +76,12 @@ export function getCategoryFromConsequence(consequence) {
   })
 }
 
-export function isCategoryLoF(consequence) {
-  return CATEGORY_DEFINITIONS_MAP.get('lof').contains(consequence)
+export function isCategoryLoF(consequences) {
+  return consequences.split('&').some(consequence => CATEGORY_DEFINITIONS_MAP.get('lof').contains(consequence))
 }
-export function isCategoryMissense(consequence) {
-  return CATEGORY_DEFINITIONS_MAP.get('missense').contains(consequence)
+export function isCategoryMissense(consequences) {
+  return consequences.split('&').some(consequence => CATEGORY_DEFINITIONS_MAP.get('missense').contains(consequence))
 }
-export function isCategoryMissenseOrLoF(consequence) {
-  return CATEGORY_DEFINITIONS_MAP.get('missenseAndLof').contains(consequence)
+export function isCategoryMissenseOrLoF(consequences) {
+  return consequences.split('&').some(consequence => CATEGORY_DEFINITIONS_MAP.get('missenseAndLof').contains(consequence))
 }
-
-

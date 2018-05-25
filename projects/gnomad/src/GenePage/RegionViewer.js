@@ -61,6 +61,11 @@ export const getCoverageConfig = (
   }
 }
 
+const RegionViewerWrapper = styled.div`
+  margin-left: 10px;
+  width: 100%;
+`
+
 const GeneViewer = ({
   gene,
   allVariants,
@@ -149,13 +154,13 @@ const GeneViewer = ({
               fill={'yellow'}
               stroke={'black'}
             /> */}
-            {regionalConstraintData.map((region, i) => {
+            {regionalConstraintData.map((region) => {
               const regionStart = strand === '+' ? region.genomic_start : region.genomic_end
               const regionStop = strand === '+' ? region.genomic_end : region.genomic_start
               const regionStartPos = positionOffset(regionStart).offsetPosition
               const regionStopPos = positionOffset(regionStop).offsetPosition
               return (
-                <g key={`${i}-region`}>
+                <g key={region.region_name}>
                   <RegionalConstraintRegion
                     x={xScale(regionStartPos)}
                     y={padding}
@@ -182,13 +187,6 @@ const GeneViewer = ({
       </RegionalConstraintTrackWrapper>
     )
   }
-
-  const RegionViewerWrapper = styled.div`
-    margin-left: 10px;
-    width: 100%;
-    padding-left: 0;
-    ${'' /* border: 5px solid orange; */}
-  `
 
   const RegionViewerSectionTitle = SectionTitle.extend`
     margin-left: 80px;

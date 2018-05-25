@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types'
 import React from 'react'
-import InlineCss from 'react-inline-css'
-import { TrafficBar } from '@broad/plot-traffic'
+
 import { generateComponentAsPDF } from '../index'
 
 const TestComponent = ({ message }) => {
@@ -9,8 +9,12 @@ const TestComponent = ({ message }) => {
   )
 }
 
+TestComponent.propTypes = {
+  message: PropTypes.string.isRequired,
+}
+
 const options = {
-  component: TrafficBar,
+  component: TestComponent,
   props: { message: 'hello' },
   fileName: 'test.pdf',
 }

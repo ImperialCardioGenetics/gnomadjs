@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 
+import 'datalist-polyfill'
+
 import { currentGene, actions as geneActions } from '@broad/redux-genes'
 
 import {
@@ -65,7 +67,35 @@ const SearchIconContainer = styled.span`
   font-size: 15px;
 `
 
-const SearchInput = styled.input`
+function Input({
+  history,
+  currentGene,
+  setCurrentGene,
+}) {
+  function onChoose(e) {
+    const geneName = e.target.value.toUpperCase()
+    if (currentGene !== geneName && GENES.includes(geneName)) {
+      e.target.blur()
+      if (currentGene) {
+        setCurrentGene(geneName)
+      }
+      history.push(`/gene/${geneName}`)
+    }
+  }
+
+  return (
+    <input
+      onChange={onChoose}
+      onSelect={onChoose}
+      type="text"
+      name="search"
+      placeholder="Search gene"
+      list="genes"
+    />
+  )
+}
+
+const SearchInput = styled(Input)`
   height: 20px;
   width: 275px;
   background-color: white;
@@ -120,20 +150,9 @@ const TopBar = ({
       <Search>
         <form>
           <SearchInput
-            onChange={(event) => {
-              const geneName = event.target.value.toUpperCase()
-              if (GENES.includes(geneName)) {
-                event.target.blur()
-                if (currentGene) {
-                  setCurrentGene(geneName)
-                }
-                history.push(`/gene/${geneName}`)
-              }
-            }}
-            type="text"
-            name="search"
-            placeholder="Search gene"
-            list="genes"
+            history={history}
+            currentGene={currentGene}
+            setCurrentGene={setCurrentGene}
           />
           <datalist id="genes">
             {GENES.map(gene => <option value={gene} key={gene}/>)}

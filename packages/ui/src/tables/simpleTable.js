@@ -55,6 +55,8 @@ export const TableCell = styled.div`
   ${'' /* width: 100px; */}
 `
 
-export const TableTitleColumn = TableCell.extend`
-  width: 10px;
-`
+export const TableTitleColumn = TableCell.extend``
+
+TableTitleColumn.defaultProps = {
+  width: '10px'
+}

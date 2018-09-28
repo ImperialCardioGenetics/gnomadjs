@@ -133,9 +133,24 @@ const fetchVariantData = (geneName, url = VARIANT_FX_API_URL) => {
     OMG_HCM_UNK_AN
     OMG_DCM_UNK_AC
     OMG_DCM_UNK_AN
-    GNO_HVO_UNK_AC
-    GNO_HVO_UNK_AN
-    GNO_HVO_UNK_AF
+    GNO_HVO_AFR_AC
+    GNO_HVO_AFR_AN
+    GNO_HVO_AMR_AC
+    GNO_HVO_AMR_AN
+    GNO_HVO_ASJ_AC
+    GNO_HVO_ASJ_AN
+    GNO_HVO_EAS_AC
+    GNO_HVO_EAS_AN
+    GNO_HVO_FIN_AC
+    GNO_HVO_FIN_AN
+    GNO_HVO_NFE_AC
+    GNO_HVO_NFE_AN
+    GNO_HVO_SAS_AC
+    GNO_HVO_SAS_AN
+    GNO_HVO_OTH_AC
+    GNO_HVO_OTH_AN
+    GNO_HVO_ALL_AC
+    GNO_HVO_ALL_AN
     CTL_AC
     HCM_AC
     DCM_AC
@@ -292,6 +307,8 @@ export default function fetchData(geneName) {
       HCM_AN,
       DCM_AN,
       CTL_AN,
+      GNO_HVO_ALL_AC,
+      GNO_HVO_ALL_AN,
       VEP,
       ...rest
     }) => {
@@ -310,6 +327,9 @@ export default function fetchData(geneName) {
         DCM_AN,
         CTL_AN,
         allele_freq: (CTL_AC + HCM_AC + DCM_AC) / (HCM_AN + DCM_AN + CTL_AN),
+        GNO_HVO_ALL_AC,
+        GNO_HVO_ALL_AN,
+        GNO_HVO_ALL_AF: GNO_HVO_ALL_AC / GNO_HVO_ALL_AN,
         ...VEP[0],
         ...rest,
       })

@@ -4,11 +4,11 @@
 
 export const POPULATIONS = {
   AFR: 'African',
+  AMR: 'Latino/Latin American',
   ASJ: 'Ashkenazy Jewish',
   EAS: 'East Asian',
   FIN: 'European (Finnish)',
   NFE: 'European',
-  LAT: 'Latino/Latin American',
   SAS: 'South Asian',
   OTH: 'Other',
   UNK: 'Unknown',
